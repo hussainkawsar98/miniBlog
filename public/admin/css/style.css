@@ -1,0 +1,8 @@
+.alert-danger {
+    background-color: #dc35450f;
+    border: 1px solid #dc35450f;
+    color: #dc3545;
+}
+#summernote .modal-header {
+    display: none!important;
+}
