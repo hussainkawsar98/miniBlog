@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,24 +21,14 @@ Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //__website Route__//
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/category', function () {
-    return view('category');
-});
-Route::get('/single', function () {
-    return view('single');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/', [FrontendController::class, 'home'])->name('home');
+Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
+Route::get('/category', [FrontendController::class, 'category'])->name('category');
+Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
+Route::get('/single', [FrontendController::class, 'single'])->name('single');
+
 
 
 //__Admin Route__//
@@ -55,16 +43,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
 // Route::get('/category', function () {
 //     return view('category');
-// });
-// Route::get('/single', function () {
-//     return view('single');
-// });
-// Route::get('/about', function () {
-//     return view('about');
-// });
-// Route::get('/contact', function () {
-//     return view('contact');
-// });
-
 
 

@@ -224,6 +224,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             
             </ul>
           </li>
+
+
           <!-- Start DropDown Menu -->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -312,7 +314,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link bg-danger" href="{{ route('logout') }}"
+            <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
                               <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -322,6 +324,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
+          </li>
+          <li class="nav-item mt-2">
+            <a href="{{url('/')}}" class="nav-link bg-info" target="_blank">
+              <i class="fas fa-globe-europe nav-icon"></i>
+              <p>
+               Visit Website
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
