@@ -84,6 +84,9 @@
                   </tbody>
                 </table>
               </div>
+              <div class="ml-auto my-3 mr-4">
+                {{$posts->links()}}
+              </div>
               <!-- /.card-body -->
             </div> 
           </div>

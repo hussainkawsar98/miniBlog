@@ -6,3 +6,11 @@
 #summernote .modal-header {
     display: none!important;
 }
+.page-link:hover {
+    color: #ffffff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.page-link:focus {
+    box-shadow: none;
+}

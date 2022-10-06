@@ -27,7 +27,7 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 Route::get('/category', [FrontendController::class, 'category'])->name('category');
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
-Route::get('/single', [FrontendController::class, 'single'])->name('single');
+Route::get('/post/{slug}', [FrontendController::class, 'post'])->name('post');
 
 
 
@@ -45,3 +45,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 //     return view('category');
 
 
+//Laravel debuger use for speed
+//{{route('frontend.post', ['slug' => $recentPost->slug])}}
