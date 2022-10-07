@@ -1,3 +1,6 @@
+a, h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Nunito Sans', sans-serif!important;
+}
 .alert-danger {
     background-color: #dc35450f;
     border: 1px solid #dc35450f;
@@ -13,4 +16,10 @@
 }
 .page-link:focus {
     box-shadow: none;
+}
+.form-control:focus {
+    box-shadow: none!important;
+}
+.form-check-input:focus {
+    box-shadow:none!important;
 }

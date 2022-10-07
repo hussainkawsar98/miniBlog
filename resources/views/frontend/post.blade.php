@@ -34,9 +34,7 @@
             <div class="pt-5">
               <p>
                 Categories:  <a href="#">{{$post->category->name}}</a><br>
-                @if($post->tags()->count() > 0)
-                Tags: 
-                @foreach()
+                Tags:
                 <a href="#">#manila</a>,
                 <a href="#">#asia</a>
               </p>

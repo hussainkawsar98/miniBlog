@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController};
+use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController,UserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +39,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource('/category', CategoryController::class);
     Route::resource('/post', PostController::class);
     Route::resource('/tag', TagController::class);
+    Route::resource('/user', UserController::class);
+
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 
 // Route::get('/category', function () {

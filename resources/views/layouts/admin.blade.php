@@ -11,6 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('public/admin')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -310,6 +311,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>
                 Simple Link
                 <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('user.index')}}" class="nav-link">
+              <i class="far fa-user nav-icon"></i>
+              <p>
+                My Account
               </p>
             </a>
           </li>
