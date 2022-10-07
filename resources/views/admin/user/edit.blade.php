@@ -39,20 +39,21 @@
                                 <div class="card-primary">
                                     <!-- Errors List Show -->
                                     @include('layouts.errors')
-                                    <form action="{{route('user.store')}}" method="POST">
+                                    <form action="{{route('user.update', $user->id)}}" method="POST">
                                         @csrf
+                                        <input type="hidden" name="_method" value="PUT">
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">User Name</label>
-                                                <input type="text" value="{{ $user->name }}" class="form-control" id="name" name="name">
+                                                <input type="text" value="{{$user->name}}" class="form-control" id="name" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                <input type="email" value="{{ $user->email }}" class="form-control" id="email" name="email">
+                                                <input type="email" value="{{$user->email}}" class="form-control" id="email" name="email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Phone</label>
-                                                <input type="number" class="form-control" id="phone" name="phone">
+                                                <input type="number" value="{{$user->phone}}" class="form-control" id="phone" name="phone">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Password</label>
@@ -60,7 +61,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Short Description</label>
-                                                <textarea name="description" id="" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
+                                                <textarea name="description" id="" value="{{$user->description}}" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Post Feature Image</label>

@@ -44,15 +44,15 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">User Name</label>
-                                                <input type="text" class="form-control" id="name" name="name">
+                                                <input type="text" class="form-control" value="{{old('name')}}" id="name" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email Address</label>
-                                                <input type="email" class="form-control" id="email" name="email">
+                                                <input type="email" value="{{old('email')}}" class="form-control" id="email" name="email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Phone</label>
-                                                <input type="number" class="form-control" id="phone" name="phone">
+                                                <input type="number" value="{{old('phone')}}" class="form-control" id="phone" name="phone">
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Password</label>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Short Description</label>
-                                                <textarea name="description" id="" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
+                                                <textarea name="description" value="{{old('description')}}" id="" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Post Feature Image</label>
@@ -68,6 +68,10 @@
                                                     <input type="file" class="custom-file-input" value="{{ old('image') }}" name="image" id="image">
                                                     <label class="custom-file-label" for="image">Choose Feature Image</label>
                                                 </div>
+                                            </div>
+                                            <div class="form-check mb-3 mt-3">
+                                                <input class="form-check-input" type="checkbox" id="check1" name="role" value="1">
+                                                <label class="form-check-label">Editor</label>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Save User</button>
                                         </div>

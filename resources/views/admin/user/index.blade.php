@@ -39,39 +39,58 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 20px">S.L</th>
                       <th>Name</th>
-                      <th>Slug</th>
-                      <th>Count</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Total Post</th>
+                      <th>User Role</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if($users->count())
-                    @foreach($users as $user)
-                    <tr>
-                      <td>{{$user->id}}</td>
-                      <td>{{$user->name}}</td>
-                      <td>{{$user->slug}}</td>
-                      <td>5</td>
-                      <td class="d-flex">
-                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-edit"></i></a>
-                        <a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-eye"></i></a>
-                        <form action="{{route('user.destroy', $user->id)}}" class="d-inline" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-danger mr-1"><i class="fas fa-trash"></i></button>
-                    </form>
-                      </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                      <td colspan="5">
-                        <h5 class="text-center text-danger">No Users Found.</h5>
-                      </td>
-                    </tr>
+                    @if((Auth()->user())->role > 0)
+                      @foreach($users as $user)
+                      <tr>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->phone}}</td>
+                        <td>5</td>
+                        <td>@if($user->role == 1)
+                            <span class="right badge badge-success">Admin</span> 
+                            @else
+                            <span class="right badge badge-info">Editor</span> 
+                            @endif
+                        </td>
+                        <td class="d-flex">
+                          <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                          <a href="{{route('user.show', $user->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-eye"></i></a>
+                          <form action="{{route('user.destroy', $user->id)}}" class="d-inline" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger mr-1"><i class="fas fa-trash"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                      @endforeach
+                    @elseif((Auth()->user())->role < 1)
+                      <tr>
+                        <td>{{Auth()->user()->name}}</td>
+                        <td>{{Auth()->user()->email}}</td>
+                        <td>{{Auth()->user()->phone}}</td>
+                        <td>5</td>
+                        <td><span class="right badge badge-info">Editor</span> </td>
+                        <td class="d-flex">
+                          <a href="{{route('user.edit', Auth()->user()->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                          <a href="{{route('user.show',Auth()->user()->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-eye"></i></a>
+                          <form action="{{route('user.destroy', Auth()->user()->id)}}" class="d-inline" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger mr-1"><i class="fas fa-trash"></i></button>
+                          </form>
+                        </td>
+                      </tr>
                     @endif
                   </tbody>
                 </table>

@@ -97,7 +97,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $posts = Post::all();
         $categories = Category::all();
         return view('admin.post.edit', compact('post','categories'));
     }
@@ -112,7 +111,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'title' => 'required, $post->id',
+            'title' => "required|unique:posts,name, $post->id",
             'image' => 'image|nullable|max:500',
         ]);
 
