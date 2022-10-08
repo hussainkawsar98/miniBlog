@@ -20,7 +20,7 @@ class PostFactory extends Factory
             'category_id' => $this->faker->randomDigit(),
             'title' => $this->faker->sentence(),
             'slug' => Str::slug($this->faker->sentence()),
-            'image' => $this->faker->imageUrl($width = 200, $height = 200),
+            'image' => $this->faker->imageUrl($width = 450, $height = 300),
             'description' => $this->faker->paragraph(),
         ];
     }

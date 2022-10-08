@@ -17,7 +17,7 @@
           </div>
           <div class="col-md-4">
             @foreach($middlePost as $mPost)
-            <a href="single.html" class="h-entry img-5 h-100 gradient" style="background-image: url('{{$fPost->image}}');">
+            <a href="{{url('/post/'. $mPost->slug)}}" class="h-entry img-5 h-100 gradient" style="background-image: url('{{$fPost->image}}');">
               <div class="text">
                 <div class="post-categories mb-3">
                   <span class="post-category bg-danger">{{$mPost->category->name}}</span>
@@ -56,7 +56,7 @@
             <div class="entry2">
               <a href="{{url('/post/'. $recentPost->slug)}}"><img src="{{asset($recentPost->image)}}" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">{{$recentPost->category->name}}</span>
+              <a href="{{url('/category/'. $recentPost->category->slug)}}"><span class="post-category text-white bg-secondary mb-3">{{$recentPost->category->name}}</span></a>
 
               <h2><a href="{{url('/post/'. $recentPost->slug)}}">{{$recentPost->title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix mb-2">
@@ -103,8 +103,7 @@
             <div class="entry2">
               <a href="{{url('/post/'. $post->slug)}}"><img src="{{$post->image}}" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span>
-
+              <a href="{{url('/category/'. $post->category->slug)}}"><span class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span></a>
               <h2><a href="{{url('/post/'. $post->slug)}}">{{$post->title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix mb-2">
                 <span class="d-inline-block mt-1">By <a href="{{url('single', $post->user_id)}}">{{$post->user->name}}</a></span>
@@ -124,6 +123,7 @@
     </div>
 
     <!-- International Category Blog show -->
+    @if($graphics > '0')
     <div class="site-section">
       <div class="container">
       <div class="row mb-3">
@@ -132,13 +132,13 @@
           </div>
         </div>
         <div class="row">
-        @foreach($international as $post)
-          @if($post->Category->name == 'International')
+        @foreach($graphics as $post)
+          @if($post->Category->name == 'Garphics Design')
           <div class="col-lg-4 mb-4">
             <div class="entry2">
               <a href="{{url('/post/'. $post->slug)}}"><img src="{{$post->image}}" alt="Image" class="img-fluid rounded"></a>
               <div class="excerpt">
-              <span class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span>
+              <a href="{{url('/category/'. $post->category->slug)}}"><span class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span></a>
 
               <h2><a href="{{url('/post/'. $recentPost->slug)}}">{{$post->title}}</a></h2>
               <div class="post-meta align-items-center text-left clearfix mb-2">
@@ -157,6 +157,7 @@
         </div>
       </div>
     </div>
+    @endif
 
 
 

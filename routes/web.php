@@ -25,9 +25,10 @@ Route::group(['prefix' => 'admin'], function () {
 //__website Route__//
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
-Route::get('/category', [FrontendController::class, 'category'])->name('category');
+Route::get('/category/{slug}', [FrontendController::class, 'category'])->name('category');
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 Route::get('/post/{slug}', [FrontendController::class, 'post'])->name('post');
+Route::get('/tag/{slug}', [FrontendController::class, 'tag'])->name('tag');
 
 
 
@@ -50,3 +51,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
 
 //Laravel debuger use for speed
 //{{route('frontend.post', ['slug' => $recentPost->slug])}}
+
+
+Route::get('/test', function(){
+    $id = 60;
+    $posts = App\Models\Post;
+    foreach($posts as $post){
+        $post->image ="https:i.piccsum.photos/id/".$id."50.jpg";
+        $post->save();
+        $id++;
+    }
+    return $posts;
+});

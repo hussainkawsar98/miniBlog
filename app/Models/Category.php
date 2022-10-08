@@ -15,4 +15,9 @@ class Category extends Model
         'name',
         'slug'
     ];
+
+    //__Join with Post__//
+    // public function post(){
+    //     return $this->hasOne('App\Models\post'); //Category ID
+    // }
 }

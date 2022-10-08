@@ -50,6 +50,9 @@
           <div class="col-8 text-right">
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+                @foreach($categories as $category)
+                <li><a href="{{route('category', $category->slug)}}">{{$category->name}}</a></li>
+                @endforeach
                 <li><a href="category.html">Home</a></li>
                 <li><a href="category.html">Politics</a></li>
                 <li><a href="category.html">Tech</a></li>

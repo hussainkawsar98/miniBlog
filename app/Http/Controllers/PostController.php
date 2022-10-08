@@ -111,7 +111,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'title' => "required|unique:posts,name, $post->id",
+            'title' => "required|unique:posts,title, $post->id",
             'image' => 'image|nullable|max:500',
         ]);
 

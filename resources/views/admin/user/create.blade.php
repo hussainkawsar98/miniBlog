@@ -39,7 +39,7 @@
                                 <div class="card-primary">
                                     <!-- Errors List Show -->
                                     @include('layouts.errors')
-                                    <form action="{{route('user.store')}}" method="POST">
+                                    <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="card-body">
                                             <div class="form-group">
@@ -70,7 +70,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-check mb-3 mt-3">
-                                                <input class="form-check-input" type="checkbox" id="check1" name="role" value="1">
+                                                <input class="form-check-input" type="checkbox" id="check1" name="role" value="0">
                                                 <label class="form-check-label">Editor</label>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Save User</button>
