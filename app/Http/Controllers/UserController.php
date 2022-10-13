@@ -42,7 +42,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'phone' => 'unique:users',
             'role' => 'required',
-            'image' => 'nullable|max:500',
+            'profile' => 'nullable|max:500',
         ]);
 
         $user = User::create([
@@ -51,16 +51,14 @@ class UserController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'slug' => Str::of($request->name)->slug('-'),
-            //'description' => $request->description,
-            'image' => 'public/uploads/profile.jpg',
             'role' => $request->role,
         ]);
 
-        if($request->hasFile('image')){
-            $image = $request->image;
-            $newImage = $user->slug.".".$image->getClientOriginalExtension();
-            $image->move('public/uploads/', $newImage);
-            $user->image = 'public/uploads/' . $newImage;
+        if($request->hasFile('profile')){
+            $profile = $request->profile;
+            $newImage = $user->slug.".".$profile->getClientOriginalExtension();
+            $profile->move('public/media/', $newImage);
+            $user->profile = 'public/media/' . $newImage;
             $user->save();
         }else{
             $user->save();
@@ -83,7 +81,7 @@ class UserController extends Controller
             'name' =>"unique:users,name, $user->id",
             'email' => "unique:users,email, $user->id",
             'phone' => "unique:users,phone, $user->id",
-            'image' => 'max:500',
+            'profile' => 'nullable|max:500',
         ]);
 
         $user->name = $request->name;
@@ -91,17 +89,19 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->slug = Str::of($request->name)->slug('-');
-        //$user -> description = $request->description;
 
 
-        if($request->hasFile('image')){
-            return "true";
-            $image = $request->image;
-            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move('public/uploads/', $image_new_name);
-            $user->image = 'public/uploads/' . $image;
+        if($request->hasFile('profile')){
+            if(File::exists($request->old_image)){
+                File::delete($request->old_image);
+            }
+            $profile = $request->profile;
+            $newName = Str::of($request->name).'.'.$profile->getClientOriginalExtension();
+            $profile->move('public/media/', $newName);
+            $user->profile = 'public/media/' . $newName;
+            return $user;
         }
-
+        return $user;
         $user->save();
 
         Session::flash('success', 'User Created Successfully.');

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use File;
+use Image;
 use Session;
 use App\Models\{Post,Tag,Category,User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Auth;
-use File;
-use Image;
 
 class PostController extends Controller
 {

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController,UserController};
+use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController,UserController,SettingController};
 
 /*
 |--------------------------------------------------------------------------
@@ -41,13 +41,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource('/post', PostController::class);
     Route::resource('/tag', TagController::class);
     Route::resource('/user', UserController::class);
-
+    
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::get('/setting/{setting}/edit', [SettingController::class, 'edit'])->name('setting.edit');
+    Route::put('/setting/update/{setting}', [SettingController::class, 'update'])->name('setting.update');
+    
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 
 // Route::get('/category', function () {
 //     return view('category');
-
 
 //Laravel debuger use for speed
 //{{route('frontend.post', ['slug' => $recentPost->slug])}}

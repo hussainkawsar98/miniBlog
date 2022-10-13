@@ -59,14 +59,10 @@
                                                 <input type="password" class="form-control" id="password" name="password">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Short Description</label>
-                                                <textarea name="description" value="{{old('description')}}" id="" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
-                                            </div>
-                                            <div class="form-group">
                                                 <label>Post Feature Image</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" value="{{ old('image') }}" name="image" id="image">
-                                                    <label class="custom-file-label" for="image">Choose Feature Image</label>
+                                                    <input type="file" class="custom-file-input" value="{{ old('profile') }}" name="profile" id="profile">
+                                                    <label class="custom-file-label" for="profile">Choose User Profile</label>
                                                 </div>
                                             </div>
                                             <div class="form-check mb-3 mt-3">

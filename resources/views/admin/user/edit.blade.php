@@ -57,17 +57,13 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Password</label>
-                                                <input type="password" class="form-control" id="password" name="password">
+                                                <input type="password" placeholder="Password" class="form-control" id="password" name="password">
                                             </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Short Description</label>
-                                                <textarea name="description" id="" value="{{$user->description}}" cols="30" rows="4" class="form-control" placeholder="Write Short Description"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Post Feature Image</label>
+                                                <label>Update User Profile</label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" value="{{ old('image') }}" name="image" id="image">
-                                                    <label class="custom-file-label" for="image">Choose Feature Image</label>
+                                                    <input type="file" class="custom-file-input" value="{{ old('profile') }}" name="profile" id="profile">
+                                                    <label class="custom-file-label" for="profile">Update User Profile</label>
                                                 </div>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Update User</button>

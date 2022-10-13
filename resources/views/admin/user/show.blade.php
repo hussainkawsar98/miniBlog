@@ -32,7 +32,7 @@
                       <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                           <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="{{asset($user->image)}}" width="200px" alt="Profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="@if($user->profile){{asset($user->profile)}} @else{{asset('public/media/user.png')}}@endif" width="200px" alt="Profile picture">
                           </div>
                           <h3 class="profile-username text-center">{{$user->name}}</h3>
                           <p class="text-muted text-center"><span class="right badge badge-info">Editor</span></p>

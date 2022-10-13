@@ -32,7 +32,7 @@
                     <div class="d-flex justify-content-between">
                         <h3 class="card-title pt-2">User List</h3>
                         <div class="button">
-                          <a href="{{route('user.show', Auth()->user()->id)}}" class="btn btn-info mr-2">Edit My Profile</a>
+                          <a href="{{route('user.show', Auth()->user()->id)}}" class="btn btn-info mr-2">View My Profile</a>
                           <a href="{{route('user.create')}}" class="btn btn-primary">Add User</a>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                       <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                           <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="{{Auth()->user()->image}}" width="200px" alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="@if(Auth()->user()->image){{asset($Auth()->user()->image)}} @else{{asset('public/media/user.png')}}@endif" alt="Image" class="img-fluid" width="200px" alt="User profile picture">
                           </div>
                           <h3 class="profile-username text-center">{{Auth()->user()->name}}</h3>
                           <p class="text-muted text-center"><span class="right badge badge-info">Editor</span></p>

@@ -20,8 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('slug')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->string('profile')->nullable();
             $table->string('password');
             $table->integer('role')->default('1');
             $table->rememberToken();
@@ -36,6 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        $table->dropColumn('remember_token');
         Schema::dropIfExists('users');
     }
 }
