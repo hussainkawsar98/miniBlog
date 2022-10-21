@@ -20,6 +20,9 @@ class setting extends Model
         'youtube',
         'linkedin',
         'pinterest',
+        'address',
+        'phone',
+        'email',
         'copy_right',
     ];
 

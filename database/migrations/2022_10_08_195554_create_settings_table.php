@@ -25,6 +25,9 @@ class CreateSettingsTable extends Migration
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('pinterest')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('copy_right')->nullable();
             $table->timestamps();
         });

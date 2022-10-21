@@ -48,6 +48,7 @@ class SettingController extends Controller
         $this->validate($request, [
             'site_logo' => 'image|nullable|max:300',
             'footer_logo' => 'image|nullable|max:300',
+            'copy_right' => 'required',
         ]);
 
         $setting->site_title = $request->site_title;
@@ -66,8 +67,8 @@ class SettingController extends Controller
             }
             $site_logo = $request->site_logo;
             $newName = 'Site Logo'.'.'.$site_logo->getClientOriginalExtension();
-            $site_logo->move('public/uploads/', $newName);
-            $setting->site_logo = 'public/uploads/' . $newName;
+            $site_logo->move('public/media/', $newName);
+            $setting->site_logo = 'public/media/' . $newName;
         }
         if($request->hasFile('footer_logo')){
             if(File::exists($request->old_image)){
@@ -75,8 +76,8 @@ class SettingController extends Controller
             }
             $footer_logo = $request->footer_logo;
             $newName = 'Footer Logo'.'.'.$footer_logo->getClientOriginalExtension();
-            $footer_logo->move('public/uploads/', $newName);
-            $setting->footer_logo = 'public/uploads/' . $newName;
+            $footer_logo->move('public/media/', $newName);
+            $setting->footer_logo = 'public/media/' . $newName;
         }
 
         $setting->save();

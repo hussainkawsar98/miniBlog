@@ -78,7 +78,6 @@ class UserController extends Controller
 
     public function update(Request $request, User $user){
         $this->validate($request, [
-            'name' =>"unique:users,name, $user->id",
             'email' => "unique:users,email, $user->id",
             'phone' => "unique:users,phone, $user->id",
             'profile' => 'nullable|max:500',
@@ -96,7 +95,7 @@ class UserController extends Controller
                 File::delete($request->old_image);
             }
             $profile = $request->profile;
-            $newName = Str::of($request->name).'.'.$profile->getClientOriginalExtension();
+            $newName = "logo".'.'.$profile->getClientOriginalExtension();
             $profile->move('public/media/', $newName);
             $user->profile = 'public/media/' . $newName;
             return $user;

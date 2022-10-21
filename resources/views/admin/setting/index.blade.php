@@ -80,6 +80,18 @@
                                             <h5>Youtube Link</h5>
                                             <p>{{$set->youtube}}</p>
                                         </div>
+                                        <div class="col-md-6">
+                                            <h5>Address</h5>
+                                            <p>{{$set->address}}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Phone</h5>
+                                            <p>{{$set->phone}}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Email</h5>
+                                            <p>{{$set->email}}</p>
+                                        </div>
                                     </div>          
                                     <h5>Copy Right</h5>
                                     <p>{{$set->copy_right}}</p>

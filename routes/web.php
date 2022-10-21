@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController,UserController,SettingController};
+use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController};
+use App\Http\Controllers\{ContactController,UserController,SettingController};
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('/category/{slug}', [FrontendController::class, 'category'])->name('c
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 Route::get('/post/{slug}', [FrontendController::class, 'post'])->name('post');
 Route::get('/tag/{slug}', [FrontendController::class, 'tag'])->name('tag');
-
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');
 
 
 //__Admin Route__//
@@ -42,10 +43,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource('/tag', TagController::class);
     Route::resource('/user', UserController::class);
     
+    //__Setting Route__//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::get('/setting/{setting}/edit', [SettingController::class, 'edit'])->name('setting.edit');
     Route::put('/setting/update/{setting}', [SettingController::class, 'update'])->name('setting.update');
     
+    //__Contact Route__//
+    Route::get('/message', [ContactController::class, 'index'])->name('message.index');
+    Route::get('/message/show/{id}', [ContactController::class, 'show'])->name('message.show');
+    Route::delete('/message/destroy/{id}', [ContactController::class, 'destroy'])->name('message.destroy');
+
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 });
 

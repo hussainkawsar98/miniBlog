@@ -46,7 +46,7 @@
                                         <div class="form-group">
                                             <label>Website Header Logo</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" value="{{ old('image') }}"
+                                                <input type="file" class="custom-file-input" value="{{ old('site_logo') }}"
                                                     id="hLogo" name="site_logo">
                                                 <label class="custom-file-label" for="image">Choose Your Logo</label>
                                             </div>
@@ -54,7 +54,7 @@
                                         <div class="form-group">
                                             <label>Website Footer Logo</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" value="{{ old('image') }}"
+                                                <input type="file" class="custom-file-input" value="{{ old('footer_logo') }}"
                                                     name="footer_logo">
                                                 <label class="custom-file-label" id="hLogo" for="image">Choose Footer
                                                     Logo</label>
@@ -106,6 +106,24 @@
                                                 <div class="form-group">
                                                     <label>Pinterest Link</label>
                                                     <input type="text" class="form-control" value="{{$setting->pinterest}}" name="pinterest">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <input type="text" class="form-control" value="{{$setting->address}}" name="address">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" class="form-control" value="{{$setting->phone}}" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" value="{{$setting->email}}" name="email">
                                                 </div>
                                             </div>
                                         </div>

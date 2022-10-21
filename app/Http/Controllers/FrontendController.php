@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Post,Category,Tag};
+use App\Models\{Post,Category,Tag,Setting};
 
 class FrontendController extends Controller
 {
@@ -30,7 +30,8 @@ class FrontendController extends Controller
     //__Contact Page__//
     public function contact()
     {
-        return view('frontend.contact');
+        $setting = Setting::first();
+        return view('frontend.contact', compact('setting'));
     }
 
     //__Post Page__//

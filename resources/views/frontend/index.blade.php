@@ -21,7 +21,7 @@
                 <a href="{{url('/post/'. $mPost->slug)}}" class="h-entry img-5 h-100 gradient"
                     style="background-image: url('{{$fPost->image}}');">
                     <div class="text">
-                        <div class="post-categories mb-3">
+                        <div class="post-categories mb-1">
                             <span class="post-category bg-danger">{{$mPost->category->name}}</span>
                         </div>
                         <h2>{{$mPost->title}}</h2>
@@ -61,7 +61,7 @@
                             class="img-fluid rounded"></a>
                     <div class="excerpt">
                         <a href="{{url('/category/'. $recentPost->category->slug)}}"><span
-                                class="post-category text-white bg-secondary mb-3">{{$recentPost->category->name}}</span></a>
+                                class="post-category text-white bg-secondary mb-1">{{$recentPost->category->name}}</span></a>
 
                         <h2><a href="{{url('/post/'. $recentPost->slug)}}">{{$recentPost->title}}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix mb-2">
@@ -75,7 +75,7 @@
                             </span>
                         </div>
                         <p></p>
-                        <p><a href="{{url('/post/'. $recentPost->slug)}}">Read More</a></p>
+                        <p><a href="{{url('/post/'. $recentPost->slug)}}">Read More <i class="far fa-chevron-right"></i> <i class="far fa-angle-right"></i> <i class="far fa-arrow-alt-to-right"></i> <i class="far fa-arrow-alt-square-left"></i></a></p>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,9 @@
         </div>
         <div class="row text-center pt-5 border-top">
             <div class="col-md-12">
+                <div class="pagination">
                 {{ $recentPosts->links() }}
+                </div>
                 <!-- <div class="custom-pagination">
               <span>1</span>
               <a href="#">2</a>
