@@ -14,17 +14,19 @@ class Post extends Model
     protected $dates = ['published_at'];
 
     //__Join with Category__//
-    public function category(){
-        return $this->belongsTo('App\Models\Category', 'category_id'); //Category ID
+    // public function categories(){
+    //     return $this->belongsToMany('App\Models\Category'); 
+    // }
+    public function categories(){
+        return $this->belongsToMany('App\Models\Category', 'category_posts')->withTimestamps(); 
     }
-
     //__Join with Usery__//
     public function user(){
         return $this->belongsTo('App\Models\User', 'user_id');  //User ID
     }
 
-     //__Join with Usery__//
-     public function tag(){
-        return $this->belongsToMany('App\Models\Tag');  //User ID
+    //__Join with Usery__//
+    public function tags(){
+        return $this->belongsToMany('App\Models\Tag'); 
     }
 }

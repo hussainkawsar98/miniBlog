@@ -10,7 +10,7 @@ class FrontendController extends Controller
     //__Home Page__//
     public function home()
     {
-        $posts = Post::with('Category', 'User')->orderBy('created_at', 'DESC')->take(5)->get();
+        $posts = Post::with('User')->orderBy('created_at', 'DESC')->take(5)->get();
         $firstPost = $posts->splice(0, 2);
         $middlePost = $posts->splice(0, 1);
         $lastPost = $posts->splice(0, 2);
@@ -65,6 +65,8 @@ class FrontendController extends Controller
     //__Tag Page__//
     public function tag()
     {
+        $tag = Tag::where('slug', $slug)->first();
+        if($tag = Post::where('tag'))
         return view('frontend.tag');
     }
 }

@@ -17,7 +17,6 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => $this->faker->randomDigit(),
-            'category_id' => $this->faker->randomDigit(),
             'title' => $this->faker->sentence(),
             'slug' => Str::slug($this->faker->sentence()),
             'image' => $this->faker->imageUrl($width = 450, $height = 300),

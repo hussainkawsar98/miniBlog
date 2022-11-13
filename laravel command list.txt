@@ -1,0 +1,22 @@
+Factory Command
+1. php artisan make:factory AddressFactory
+2. php artisan tinker
+3. App\Models\Address::factory(10)->create();
+4. App\Models\Post::find(1)
+
+Data Add By Foreach
+Route::get('/test', function(){
+    $id = 60;
+    $posts = App\Models\Post;
+    foreach($posts as $post){
+        $post->image ="https:i.piccsum.photos/id/".$id."50.jpg";
+        $post->save();
+        $id++;
+    }
+    return $posts;
+});
+
+
+
+Code to plan text
+{!! htmlspecialchars($post->body) !!}

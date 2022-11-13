@@ -59,7 +59,7 @@
                       <td>{{$post->user->name}}</td>
                       <td>
                         <div style="max-width:70px; overflow:hidden;">
-                        <img src="{{asset($post->image)}}" style="height:100px;" alt="">
+                        <img src="{{asset($post->image)}}" style="width:100px;" alt="">
                         </div>
                       </td>
                       <td class="d-flex">
