@@ -32,6 +32,16 @@ It is a Blog Project and it made by me. There are use HTML, CSS, JavaScript, JQu
 - JQuery 3.1
 - Boostrap 5
 
+## Table List
+- User
+- Post
+- Tag
+- Category
+- Comment
+- Message
+- Website Necessary Setting
+- Category Post Join Table
+- Post Tag Join Table
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
