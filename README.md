@@ -7,9 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+It is a Blog Project and it made by me. There are use HTML, CSS, JavaScript, JQuery, PP, Laravel and Bootstrap. This project has all type options which are get a blog. 
+Included options is
+Post CRUR
+Category CRUD
+User CRUD
+Tag CRUD
+Needed all setting
+Daynamically Changable Social link
+Separaite admin and editor
+Hig secoure dashborad  
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
