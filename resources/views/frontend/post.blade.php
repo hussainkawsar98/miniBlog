@@ -1,12 +1,14 @@
 ﻿@extends('layouts.website')
 
 @section('content')
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{$post->image}}');">
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{asset($post->image)}}');">
       <div class="container">
         <div class="row same-height justify-content-center">
           <div class="col-md-12 col-lg-10">
             <div class="post-entry text-center">
-              <span class="post-category text-white bg-success mb-3">{{$post->category->name}}</span>
+                @foreach($post->categories as $category)
+                <span class="post-category text-white bg-primary mb-3">{{$category->name}}</span>
+                @endforeach
               <h1 class="mb-4"><a href="javascript:void()">{{$post->title}}</a></h1>
               <div class="post-meta align-items-center text-center">
                 <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="@if($post->user->image){{asset($post->user->image)}} @else{{asset('public/media/user.png')}}@endif" alt="Image" class="img-fluid"></figure>
@@ -31,124 +33,55 @@
             </div>
 
             
-            <div class="pt-5">
+            <div class="pt-3">
               <p>
-                Categories:  <a href="#">{{$post->category->name}}</a><br>
+                Categories: 
+                @foreach($post->categories as $category)
+                <a href="#"><span class="post-category text-primary bg-white mb-3">{{$category->name}}</span></a>
+                @endforeach
+                <br>
                 Tags:
-                <a href="#">#manila</a>,
-                <a href="#">#asia</a>
+                @foreach($post->tags as $tag)
+                <a href="#"><span class="post-category text-primary bg-light mb-3">{{$tag->tag}}</span></a>
+                @endforeach
               </p>
             </div>
 
-
-            <div class="pt-5">
-              <h3 class="mb-5">6 Comments</h3>
+            <div class="pt-3">
               <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard">
-                    <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply rounded">Reply</a></p>
-                  </div>
+                <h3>Comments</h3>
+                @foreach($post->comments as $comment)
+                @if($comment)
+                <li class="comment ml-4 mb-3">
+                  <h5>{{$comment->name}}</h5>
+                  <div class="meta">{{$comment->created_at->format('H:i a. - d M, Y', '11.19.2022 12:00:00 AM.')}}</div>
+                  <p>{{$comment->comment}}</p>
                 </li>
-
-                <li class="comment">
-                  <div class="vcard">
-                    <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply rounded">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard">
-                        <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Jean Doe</h3>
-                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                        <p><a href="#" class="reply rounded">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard">
-                            <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>Jean Doe</h3>
-                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                            <p><a href="#" class="reply rounded">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard">
-                                  <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>Jean Doe</h3>
-                                  <div class="meta">January 9, 2018 at 2:21pm</div>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                  <p><a href="#" class="reply rounded">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="comment">
-                  <div class="vcard">
-                    <img src="{{asset('public/website')}}/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply rounded">Reply</a></p>
-                  </div>
-                </li>
+                @endif
+                @endforeach
               </ul>
+            
               <!-- END comment-list -->
               
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-5 bg-light">
+              <div class="comment-form-wrap pt-3">
+                <h3 class="mb-3">Leave a comment</h3>
+                <form action="{{route('comment.store')}}" method="POST" class="p-5 bg-light">
+                  @csrf
                   <div class="form-group">
                     <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" name="name" id="name">
                   </div>
                   <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" name="email" id="email">
                   </div>
                   <div class="form-group">
-                    <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="message">Comment</label>
+                    <textarea name="" id="message" cols="30" name="comment" rows="5" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn btn-primary">
                   </div>
-
                 </form>
               </div>
             </div>
@@ -193,7 +126,7 @@
               <h3 class="heading">Categories</h3>
               <ul class="categories">
                 @foreach($categories as $category)
-                <li><a href="{{route('category', $category->slug)}}">{{$category->name}} <span>(12)</span></a></li>
+                <li><a href="{{route('category', $category->slug)}}">{{$category->name}} <span>({{$category->posts->count()}})</span></a></li>
                 @endforeach
               </ul>
             </div>
@@ -216,51 +149,39 @@
 
     <div class="site-section bg-light">
       <div class="container">
-
         <div class="row mb-5">
           <div class="col-12">
             <h2>More Related Posts</h2>
           </div>
         </div>
 
-        <div class="row align-items-stretch retro-layout">
-          
-          <div class="col-md-5 order-md-2">
-            <a href="single.html" class="hentry img-1 h-100 gradient" style="background-image: url('images/img_4.jpg');">
-              <span class="post-category text-white bg-danger">Travel</span>
-              <div class="text">
-                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                <span>February 12, 2019</span>
-              </div>
-            </a>
+        <div class="row">
+        @foreach($recentPost as $rePost)
+          <div class="col-lg-4 mb-4">
+              <div class="entry2">
+                  <a href="{{url('/post/'. $post->slug)}}"><img src="{{asset($post->image)}}" alt="Image"
+                    class="img-fluid rounded"></a>
+                  <div class="excerpt">
+                      @foreach($rePost->categories as $category)
+                      <span class="d-inline-block bg-info mb-1 p-1 px-2 mr-1 rounded text-white">{{$category->name}}</span>
+                      @endforeach
+                      <h2><a href="{{url('/post/'. $post->slug)}}">{{$rePost->title}}</a></h2>
+                      <div class="post-meta align-items-center text-left clearfix mb-2">
+                          <figure class="author-figure mb-0 mr-3 float-left"><img
+                                  src="@if($post->user->image){{asset($post->user->image)}} @else{{asset('public/media/user.png')}}@endif"
+                                  alt="Image" class="img-fluid"></figure>
+                          <span class="d-inline-block mt-1">By <a
+                                  href="{{url('author', $post->user_id)}}">{{$rePost->user->name}}</a></span>
+                          <span>&nbsp;-&nbsp; {{date('d M, y', strtotime($rePost->created_at))}}
+                          </span>
+                      </div>
+                      <p></p>
+                      <p><a href="{{url('/post/'. $post->slug)}}">Read More</a></p>
+                  </div>
+                </div>
+            </div>
+            @endforeach
           </div>
-
-          <div class="col-md-7">
-            
-            <a href="single.html" class="hentry img-2 v-height mb30 gradient" style="background-image: url('images/img_1.jpg');">
-              <span class="post-category text-white bg-success">Nature</span>
-              <div class="text text-sm">
-                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                <span>February 12, 2019</span>
-              </div>
-            </a>
-            
-            <div class="two-col d-block d-md-flex">
-              <a href="single.html" class="hentry v-height img-2 gradient" style="background-image: url('images/img_2.jpg');">
-                <span class="post-category text-white bg-primary">Sports</span>
-                <div class="text text-sm">
-                  <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                  <span>February 12, 2019</span>
-                </div>
-              </a>
-              <a href="single.html" class="hentry v-height img-2 ml-auto gradient" style="background-image: url('images/img_3.jpg');">
-                <span class="post-category text-white bg-warning">Lifestyle</span>
-                <div class="text text-sm">
-                  <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                  <span>February 12, 2019</span>
-                </div>
-              </a>
-            </div>  
             
           </div>
         </div>

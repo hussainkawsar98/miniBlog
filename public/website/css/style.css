@@ -1848,16 +1848,22 @@ h5,
 }
 
 .navbar .form-inline .form-control {
-    min-width: 250px;
+    min-width: 100%;
+    border-radius: 25px;
 }
-
+.navbar .form-inline .form-control:focus {
+    border-color: #2f89fc;
+}
 .navbar .btn {
-    color: #ffffff;
-    background-color: #2f89fc;
+    color: #333333;
+    background-color: transparent;
     line-height: 28px;
     position: absolute;
-    right: 0;
+    right: 1rem;
     padding: 6px 15px;
+}
+.navbar .form-inline .btn .fas:focus {
+    color: #2f89fc;
 }
 
 @media screen and (max-width:992px) {
@@ -1875,6 +1881,19 @@ h5,
     .dropdown-item {
         padding: 7px 15px;
     }
+}
+
+
+/* Navigation Style */
+.search-icon {
+    color: #333333;
+    padding-top: 10px;
+    font-size: 18px!important;
+    border-radius: 50%;
+    padding-top: 9px;
+}
+.search-icon:hover {
+    color: #2f89fc;
 }
 
 /* Entry Style */
@@ -1930,4 +1949,31 @@ h5,
 /* Address style */
 .address p{
   margin-bottom: 4px;
+}
+
+/* Post Page Style */
+.site-cover, .site-cover .same-height {
+    padding: 4em 0;
+}
+.site-cover.single-page h1 {
+    font-size: 3rem;
+}
+.sidebar-box ul.categories li a {
+    color: #808284;
+}
+.sidebar-box ul.categories li a:hover {
+    color: #222222;
+}
+.comment {
+    border-bottom: 1px solid #cccccc;
+}
+.comment:last-child {
+    border-bottom: none;
+}
+.comment .meta {
+    font-size: 12px;
+    font-weight: 500;
+}
+.comment p {
+    color: #333333;
 }

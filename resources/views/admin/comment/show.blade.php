@@ -31,45 +31,32 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="card-title pt-2">Create Post</h3>
-                                    <a href="{{route('post.index')}}" class="btn btn-primary">Go Back Post List</a>
+                                    <h3 class="card-title pt-2">Comment Show</h3>
+                                    <a href="{{route('comment.index')}}" class="btn btn-primary">Go Back Comment List</a>
                                 </div>
                             </div>
                             <div class="card-body p-4">
                                 <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 160px; vertical-align:top;">Image</th>
-                                            <th><img src="{{asset($post->image)}}" width="300px" alt=""></th>
-                                        </tr>
-                                    </thead>
                                     <tbody>
                                         <tr>
-                                            <th style="vertical-align:top;">Title</th>
-                                            <td>{{$post->title}}</td>
+                                            <th style="vertical-align:top;">User Name</th>
+                                            <td>{{$comment->name}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Category Name</th>
-                                            <td>
-                                                @foreach($post->categories as $category)
-                                                {{$category->name}}; &nbsp;
-                                                @endforeach
-                                            </td>
+                                            <th style="vertical-align:top;">Email</th>
+                                            <td>{{$comment->email}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="vertical-align:top;">Post Tags</th>
-                                            <td> @foreach($post->tags as $tag)
-                                                {{$tag->tag}}; &nbsp;
-                                                @endforeach
-                                            </td>
+                                            <th style="vertical-align:top;">Comment</th>
+                                            <td>{{$comment->comment}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Author Name</th>
-                                            <td>{{$post->user->name}}</td>
+                                            <th style="vertical-align:top;">Post Name</th>
+                                            <td>{{$comment->post->title}}</td>
                                         </tr>
                                         <tr>
-                                            <th style="vertical-align:top;">Description</th>
-                                            <td>{!! $post->description !!}</td>
+                                            <th style="vertical-align:top;">Time</th>
+                                            <td>{{$comment->created_at->format('H:i a. - d M, Y', '11.19.2022 12:00:00 AM.')}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

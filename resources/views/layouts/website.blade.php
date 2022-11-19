@@ -42,7 +42,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                 aria-expanded="false">
-                                Dropdown
+                                Categories
                             </a>
                             <div class="dropdown-menu">
                                 @foreach($categories as $category)
@@ -57,11 +57,34 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('contact')}}">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            
+
+                            <!-- Button trigger modal -->
+                            <i data-target="#exampleModal" class="fas fa-search search-icon" data-toggle="modal"></i>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-body">
+                                    <form class="form-inline my-2 my-lg-0">
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn my-2 my-sm-0" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+                        </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
+                    <!-- <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    </form> -->
                 </div>
             </nav>
         </div>

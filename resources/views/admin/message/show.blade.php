@@ -54,6 +54,10 @@
                                         <td>Message</td>
                                         <td>{{$message->message}}</td>
                                     </tr>
+                                    <tr>
+                                        <td>Time</td>
+                                        <td>{{$message->created_at->format('H:i:s - d M, Y')}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

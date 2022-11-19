@@ -1,6 +1,21 @@
 a, h1, h2, h3, h4, h5, h6, p {
     font-family: 'Nunito Sans', sans-serif!important;
 }
+.logout {
+    color: #dc3545!important;
+    border: 1px solid #dc3545!important;
+}
+.logout:hover {
+    color: #ffffff!important;
+    border: 1px solid #ffffff!important;
+    background-color: #dc3545!important;
+}
+.fas.fa-globe-africa.nav-icon {
+    font-size: 22px;
+}
+.brand-link {
+    font-size: 1.2rem;
+}
 .alert-danger {
     background-color: #dc35450f;
     border: 1px solid #dc35450f;
@@ -22,4 +37,23 @@ a, h1, h2, h3, h4, h5, h6, p {
 }
 .form-check-input:focus {
     box-shadow:none!important;
+}
+.btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle {
+    color: #1f2d3d;
+    background-color: #ffffff;
+    border-color: #007bff;
+}
+.btn-light {
+    background-color: #ffffff;
+    border-color: #ced4da;
+}
+.btn-light:hover {
+    background-color: #ffffff;
+    border-color: #007bff;
+}
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+    outline: none!important;
+}
+.list-group.list-group-unbordered .list-group-item:last-child {
+    border: none!important;
 }

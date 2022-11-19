@@ -15,20 +15,7 @@ class UserController extends Controller
 {
     public function index(){
         $users = User::latest()->paginate(20);
-
-        // $users = Auth()->user();
-        // if($users->role > 0){
-        //     $users = User::latest()->paginate(20);
-        //     return view('admin.user.index', compact('users'));
-        // }
-        // else{
-        //     $users = Auth()->user();
-        //     return view('admin.user.index', compact('users'));
-        // }
-
         return view('admin.user.index', compact('users'));
-
-
     }
 
     public function create(){

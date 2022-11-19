@@ -22,7 +22,9 @@
                     style="background-image: url('{{$fPost->image}}');">
                     <div class="text">
                         <div class="post-categories mb-1">
-                            <span class="post-category bg-danger">{{$mPost->category->name}}</span>
+                        @foreach($mPost->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 px-2 p-1 mr-1 rounded">{{$category->name}}</span>
+                        @endforeach
                         </div>
                         <h2>{{$mPost->title}}</h2>
                         <span class="date">{{$mPost->created_at->format('d M, Y')}}</span>
@@ -60,8 +62,9 @@
                     <a href="{{url('/post/'. $recentPost->slug)}}"><img src="{{asset($recentPost->image)}}" alt="Image"
                             class="img-fluid rounded"></a>
                     <div class="excerpt">
-                        <a href="{{url('/category/'. $recentPost->category->slug)}}"><span
-                                class="post-category text-white bg-secondary mb-1">{{$recentPost->category->name}}</span></a>
+                        @foreach($recentPost->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 p-1 px-2 mr-1 rounded text-white">{{$category->name}}</span>
+                        @endforeach
 
                         <h2><a href="{{url('/post/'. $recentPost->slug)}}">{{$recentPost->title}}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix mb-2">
@@ -108,15 +111,17 @@
             </div>
         </div>
         <div class="row">
-            @foreach($national as $post)
-            @if($post->Category->name == 'National')
+            @foreach($categoryWise as $post)
+            @foreach($post->categories as $category)
+            @if($category->name == 'Web Design')
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
                     <a href="{{url('/post/'. $post->slug)}}"><img src="{{$post->image}}" alt="Image"
                             class="img-fluid rounded"></a>
                     <div class="excerpt">
-                        <a href="{{url('/category/'. $post->category->slug)}}"><span
-                                class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span></a>
+                        @foreach($post->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 p-1 px-2 mr-1 rounded text-white">{{$category->name}}</span>
+                        @endforeach
                         <h2><a href="{{url('/post/'. $post->slug)}}">{{$post->title}}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix mb-2">
                             <figure class="author-figure mb-0 mr-3 float-left"><img
@@ -135,13 +140,13 @@
             </div>
             @endif
             @endforeach
+            @endforeach
         </div>
     </div>
 </div>
 
 <!-- International Category Blog show -->
-@if($graphics > '0')
-<div class="site-section">
+<div class="site-section bg-light">
     <div class="container">
         <div class="row mb-3">
             <div class="col-12">
@@ -149,16 +154,17 @@
             </div>
         </div>
         <div class="row">
-            @foreach($graphics as $post)
-            @if($post->Category->name == 'Garphics Design')
+            @foreach($categoryWise as $post)
+            @foreach($post->categories as $category)
+            @if($category->name == 'Web Design')
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
                     <a href="{{url('/post/'. $post->slug)}}"><img src="{{$post->image}}" alt="Image"
                             class="img-fluid rounded"></a>
                     <div class="excerpt">
-                        <a href="{{url('/category/'. $post->category->slug)}}"><span
-                                class="post-category text-white bg-secondary mb-3">{{$post->category->name}}</span></a>
-
+                        @foreach($post->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 p-1 px-2 mr-1 rounded text-white">{{$category->name}}</span>
+                        @endforeach
                         <h2><a href="{{url('/post/'. $post->slug)}}">{{$post->title}}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix mb-2">
                             <figure class="author-figure mb-0 mr-3 float-left"><img
@@ -177,11 +183,53 @@
             </div>
             @endif
             @endforeach
+            @endforeach
         </div>
     </div>
 </div>
-@endif
 
+<!-- Economics Category Blog show -->
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h2>National</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($categoryWise as $post)
+            @foreach($post->categories as $category)
+            @if($category->name == 'Web Design')
+            <div class="col-lg-4 mb-4">
+                <div class="entry2">
+                    <a href="{{url('/post/'. $post->slug)}}"><img src="{{$post->image}}" alt="Image"
+                            class="img-fluid rounded"></a>
+                    <div class="excerpt">
+                        @foreach($post->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 p-1 px-2 mr-1 rounded text-white">{{$category->name}}</span>
+                        @endforeach
+                        <h2><a href="{{url('/post/'. $post->slug)}}">{{$post->title}}</a></h2>
+                        <div class="post-meta align-items-center text-left clearfix mb-2">
+                            <figure class="author-figure mb-0 mr-3 float-left"><img
+                                    src="@if($post->user->image){{asset($post->user->image)}} @else{{asset('public/media/user.png')}}@endif"
+                                    alt="Image" class="img-fluid"></figure>
+                            <span class="d-inline-block mt-1">By <a
+                                    href="{{url('author', $post->user_id)}}">{{$post->user->name}}</a></span>
+                            <span>&nbsp;-&nbsp; {{date('d M, y', strtotime($post->created_at))}}
+                                <!-- {{$recentPost->created_at->format('d M, Y')}} -->
+                            </span>
+                        </div>
+                        <p></p>
+                        <p><a href="{{url('/post/'. $post->slug)}}">Read More</a></p>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
+            @endforeach
+        </div>
+    </div>
+</div>
 
 
 <div class="site-section bg-lightx">

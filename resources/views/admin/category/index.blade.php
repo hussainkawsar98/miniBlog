@@ -53,10 +53,9 @@
                       <td>{{$category->id}}</td>
                       <td>{{$category->name}}</td>
                       <td>{{$category->slug}}</td>
-                      <td>5</td>
+                      <td>{{$category->posts->count()}}</td>
                       <td class="d-flex">
                         <a href="{{route('category.edit', $category->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-edit"></i></a>
-                        <a href="{{route('category.show', $category->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-eye"></i></a>
                         <form action="{{route('category.destroy', $category->id)}}" class="d-inline" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->

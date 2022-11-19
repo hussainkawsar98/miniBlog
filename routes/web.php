@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController};
-use App\Http\Controllers\{ContactController,UserController,SettingController};
-
+use App\Http\Controllers\{ContactController,UserController,SettingController,CommentController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,7 +30,7 @@ Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact
 Route::get('/post/{slug}', [FrontendController::class, 'post'])->name('post');
 Route::get('/tag/{slug}', [FrontendController::class, 'tag'])->name('tag');
 Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');
-
+Route::post('/', [FrontendController::class, 'commentStore'])->name('comment.store');
 
 //__Admin Route__//
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
@@ -42,6 +41,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     Route::resource('/post', PostController::class);
     Route::resource('/tag', TagController::class);
     Route::resource('/user', UserController::class);
+    Route::resource('/comment', CommentController::class);
+    Route::get('/user/profile/{slug}', [UserController::class, 'profile'])->name('user.profile');
     
     //__Setting Route__//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
@@ -73,3 +74,17 @@ Route::get('/test', function(){
     }
     return $posts;
 });
+
+Route::get('/rel/{id}', function($id){
+    $post = Post::where('id', $id)->get();
+    // $first = First::where('id', $second->first_id)->get();
+    // foreach($second as $f)
+    return view('frontend.rel', compact('post'));
+});
+Route::get('/com/{id}', function($id){
+    $comment = Comment::where('id', $id)->get();
+    // $first = First::where('id', $second->first_id)->get();
+    // foreach($second as $f)
+    return view('frontend.com', compact('comment'));
+});
+Route::put('/del/{id}', [FrontendController::class, 'delete']);

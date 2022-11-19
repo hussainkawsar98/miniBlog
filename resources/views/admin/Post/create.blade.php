@@ -44,12 +44,12 @@
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label>Post Title</label>
-                                                <input type="text" value="{{ old('title') }}" class="form-control" id="title" placeholder="Enter Title" name="title">
+                                                <input type="text" value="{{ old('title') }}" class="form-control" id="title" placeholder="Write Post Title" name="title">
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Post Category</label>
-                                                <select name="category_id" value="{{ old('category_id') }}" id="" class="form-control">
+                                                <select name="category_id[]" id="" class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 1">
                                                     <option selected disabled>Select Post Category</option>
                                                     @foreach($categories as $category)
                                                     <option value="{{$category->id}}">{{$category->name}}</option>
@@ -63,15 +63,13 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Select Tags</label>
-                                                @foreach($tags as $tag)
-                                                <div class="form-check">
-                                                    <input class="form-check-input" value="{{$tag->id}}" name="tags[]" type="checkbox" id="tag{{$tag->id}}">
-                                                    <label class="form-check-label" for="tag{{$tag->id}}">{{$tag->tag}}</label>
-                                                </div>
-                                                @endforeach
-                                                <div class="form-group">
-
+                                                <label>Post Tags</label>
+                                                <select name="tag_id[]" id="" class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 1">
+                                                    <option selected disabled>Select Post Tags</option>
+                                                    @foreach($tags as $tag)
+                                                    <option value="{{$tag->id}}">{{$tag->tag}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group">

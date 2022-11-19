@@ -54,8 +54,16 @@
                     <tr>
                       <td>{{$post->id}}</td>
                       <td>{{$post->title}}</td>
-                      <td>{{$post->category->name}}</td>
-                      <td>{{$post->tags}}</td>
+                      <td>
+                        @foreach($post->categories as $category)
+                        <span class="d-inline-block bg-info mb-1 p-1 mr-1 rounded">{{$category->name}}</span>
+                        @endforeach
+                      </td>
+                      <td>
+                        @foreach($post->tags as $tag)
+                        <span class="d-inline-block bg-info mb-1 p-1 mr-1 rounded">{{$tag->tag}}</span>
+                        @endforeach
+                      </td>
                       <td>{{$post->user->name}}</td>
                       <td>
                         <div style="max-width:70px; overflow:hidden;">

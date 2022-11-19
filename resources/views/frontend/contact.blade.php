@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-7 mb-4">
             <div class="comment-form-wrap pt-5">
-                <form action="{{route('contact.store')}}" method="POST" class="p-5 bg-light rounded shadow">
+                <form action="{{route('contact.store')}}" method="POST" class="p-5 bg-light rounded">
                     @if($errors)
                     @foreach($errors->all() as $error)
                     <li class="text-danger font-weight-bold">{{$error}}</li>
@@ -43,7 +43,7 @@
                         <textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Post Comment" class="btn btn-primary">
+                        <input type="submit" value="Send Message" class="btn btn-primary">
                     </div>
 
                     @if(Session::has('success'))
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="col-md-5 pt-5">
-            <div class="address rounded shadow p-4 bg-light">
+            <div class="address rounded p-4 bg-light">
 
                 <h3 class="mb-2">Address</h3>
                 <p>Address: {{$setting->address}}</p>

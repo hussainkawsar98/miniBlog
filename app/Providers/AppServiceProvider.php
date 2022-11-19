@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         // Navbar
-        $categories = Category::take(5)->get();
+        $categories = Category::all();
         View::Share('categories', $categories);
 
         // Setting

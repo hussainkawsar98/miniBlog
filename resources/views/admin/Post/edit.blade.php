@@ -50,17 +50,37 @@
 
                                             <div class="form-group">
                                                 <label>Post Category</label>
-                                                <select name="category_id" value="{{ $post->category_id }}" id="" class="form-control">
+                                                <select name="category_id[]" class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 1">
                                                     <option selected disabled>Select Post Category</option>
                                                     @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" @if($post->category_id == $category->id) selected @endif>{{$category->name}}</option>
+                                                    <option 
+                                                    @foreach($post->categories as $postCategory)
+                                                    {{$postCategory->id == $category->id ? 'selected' : ''}}
+                                                    @endforeach
+                                                    
+                                                    value="{{$category->id}}">{{$category->name}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea name="description" id="summernote" cols="30" class="form-control" rows="4" placeholder="Description">{!! $post->description !!}</textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Post Tags</label>
+                                                <select name="tag_id[]" class="form-control selectpicker" data-live-search="true" multiple data-selected-text-format="count > 1">
+                                                    <option selected disabled>Select Post Tag</option>
+                                                    @foreach($tags as $tag)
+                                                    <option 
+                                                    @foreach($post->tags as $postTag)
+                                                    {{$postTag->id == $tag->id ? 'selected' : ''}}
+                                                    @endforeach
+                                                    
+                                                    value="{{$tag->id}}">{{$tag->tag}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
 
                                             <div class="form-group">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Post,Category,Tag,Setting};
+use App\Models\{Post,Category,Tag,Setting,Comment};
 
 class FrontendController extends Controller
 {
@@ -15,10 +15,9 @@ class FrontendController extends Controller
         $middlePost = $posts->splice(0, 1);
         $lastPost = $posts->splice(0, 2);
 
-        $recentPosts = Post::with('Category', 'User')->orderBy('created_at', 'DESC')->paginate(6);
-        $national = Post::with('Category', 'User')->orderBy('created_at', 'DESC')->take(3)->get();
-        $graphics = Post::with('Category', 'User')->where('category_id', 2)->orderBy('created_at', 'DESC')->take(20)->get();
-        return view('frontend.index', compact('recentPosts', 'firstPost', 'middlePost', 'lastPost', 'national', 'graphics'));
+        $recentPosts = Post::with('User')->orderBy('created_at', 'DESC')->paginate(6);
+        $categoryWise = Post::with('User')->orderBy('created_at', 'DESC')->take(6)->get();
+        return view('frontend.index', compact('recentPosts', 'firstPost', 'middlePost', 'lastPost', 'categoryWise'));
     }
 
     //__About Page__//
@@ -37,13 +36,14 @@ class FrontendController extends Controller
     //__Post Page__//
     public function post($slug)
     {   
-        $post = Post::with('Category', 'User')->where('slug', $slug)->first();
-        $posts = Post::with('category', 'User')->inRandomOrder()->limit(4)->get();
+        $post = Post::where('slug', $slug)->first();
+        $posts = Post::inRandomOrder()->limit(4)->get();
+        $recentPost = Post::orderBy('created_at', 'DESC')->take(6)->get();
         // $categories = Category::with('posts')>get();
         $categories = Category::all();
         $tags = Tag::all();
         if($post){
-            return view('frontend.post', compact('post', 'posts', 'categories', 'tags'));
+            return view('frontend.post', compact('post', 'posts', 'categories', 'tags', 'recentPost'));
   
         }else{
             return redirect('/');
@@ -52,10 +52,10 @@ class FrontendController extends Controller
 
     //__Category Page__//
     public function category($slug)
-    {
+    {   
         $category = Category::where('slug', $slug)->first();
         if($category){
-            $posts = Post::where('category_id', $category->id)->orderBy('created_at', 'DESC')->paginate(3);
+            $posts = Post::with('categories', 'user')->paginate(3);
             return view('frontend.category', compact('category', 'posts'));
         }else{
             return redirect('/');
@@ -69,4 +69,27 @@ class FrontendController extends Controller
         if($tag = Post::where('tag'))
         return view('frontend.tag');
     }
+
+    //__Comment Store//
+    public function commentStore()
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $comment = Comment::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
+        ]);
+        if($comment){
+            return "true";
+        }
+        dd($comment);
+        //return redirect()->route('/')->with('success', 'Comment Have Done.');
+        Session::flash('success', 'Post Updated successfully!');
+        //return redirect()->route('/');
+    }
+
 }

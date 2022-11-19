@@ -6,15 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 
-class Tag extends Model
+class Comment extends Model
 {
     use HasFactory;
-
     protected $guarded =  ['created_at', 'updated_at']; 
 
-    protected $dates = ['published_at'];
+    protected $fillable = [
+        'name',
+        'email',
+        'comment'
+    ];
 
+    //Post Table Connection
     public function post(){
-        return $this->belongsToMany('App\Models\Post', 'post_tag')->withTimestamps();
+        return $this->belongsTo(Post::class, 'post_id');
     }
+
+    
+
 }

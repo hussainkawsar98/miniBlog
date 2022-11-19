@@ -17,6 +17,11 @@
       <div class="container">
         <div class="row">
           @foreach($posts as $post)
+          @dd($category_id)
+          @foreach($post->categories as $postcategory)
+         
+          {{$postcategory->category_id}}
+          @if($category->id == $postcategory->category_id)
           <div class="col-lg-4 mb-4">
             <div class="entry2">
               <a href="single.html"><img src="{{asset($post->image)}}" alt="Image" class="img-fluid rounded"></a>
@@ -28,13 +33,14 @@
                 <span>&nbsp;-&nbsp; {{date('d M, y', strtotime($post->created_at))}}</span>
               </div>
               
-                <p>{{$post->description}}</p>
+                <p>{!! $post->description !!}</p>
                 <p><a href="{{route('post', $post->slug)}}">Read More</a></p>
               </div>
             </div>
           </div>
+          @endif
           @endforeach
-          
+          @endforeach
         </div>
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">

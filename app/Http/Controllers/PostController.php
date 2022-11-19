@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use File;
 use Image;
+use App\Http\Controllers\attach;
 use Session;
 use App\Models\{Post,Tag,Category,User};
 use Illuminate\Http\Request;
@@ -48,21 +49,28 @@ class PostController extends Controller
             'title' => 'required|unique:posts,title',
             'image' => 'image|nullable|max:500',
             'description' => 'required',
-            'category_id' => 'required',
+            // 'category_id' => 'required',
         ]);
 
 
-        $post = Post::create([
-            'title' => $request->title,
-            'slug' => Str::of($request->title)->slug('-'),
-            'image' => 'image.jpg',
-            'description' => $request->description,
-            'category_id' => $request->category_id,
-            'user_id' => auth()->user()->id,
-            'tags' => $request->tags,
-        ]);
+        // $post = Post::create([
+        //     'title' => $request->title,
+        //     'slug' => Str::of($request->title)->slug('-'),
+        //     'image' => 'image.jpg',
+        //     'description' => $request->description,
+        //     'category_id' => $request->category_id,
+        //     'user_id' => auth()->user()->id,
+        //     'tags' => $request->tags,
+        // ]);
 
-        $post->Tag()->attach($request->tags);
+        $post = new Post();
+        $post->title = $request->title;
+        $post->slug = Str::of($request->title)->slug('-');
+        $post->image = 'public/uploads/image.jpg';
+        $post->description = $request->description;
+        $post->user_id = auth()->user()->id;
+        $post->title = $request->title;
+        $post->title = $request->title;
 
         if($request->hasFile('image')){
             $image = $request->image;
@@ -73,6 +81,9 @@ class PostController extends Controller
         }else {
             $post->save();
         }
+
+        $post->categories()->attach($request->category_id);
+        $post->tags()->attach($request->tag_id);
 
         Session::flash('success', 'Post created successfully!');
         return redirect()->back();
@@ -98,7 +109,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.post.edit', compact('post','categories'));
+        $tags = Tag::all();
+        return view('admin.post.edit', compact('post','categories', 'tags'));
     }
 
     /**
@@ -118,7 +130,6 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = Str::of($request->title)->slug('-');
         $post->description = $request->description;
-        $post->category_id = $request->category_id;
 
         if($request->hasFile('image')){
             if(File::exists($request->old_image)){
@@ -132,6 +143,9 @@ class PostController extends Controller
         }else{
             $post->save();
         }
+
+        $post->categories()->sync($request->category_id);
+        $post->tags()->sync($request->tag_id);
 
         Session::flash('success', 'Post Updated successfully!');
         return redirect()->route('post.index');
@@ -153,6 +167,8 @@ class PostController extends Controller
         }else{
             $post->delete();
         }
+        $post->categories()->detach();
+        $post->tags()->detach();
 
         Session::flash('success', 'Category Deleted Successfully!');
         return redirect()->route('post.index');

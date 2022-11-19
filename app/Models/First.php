@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
+use App\Models\Second;
 
-class Tag extends Model
+class First extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,8 @@ class Tag extends Model
 
     protected $dates = ['published_at'];
 
-    public function post(){
-        return $this->belongsToMany('App\Models\Post', 'post_tag')->withTimestamps();
+     //__Join with Category__//
+     public function seconds(){
+        return $this->hasMany(Second::class, 'first_id');
     }
 }

@@ -53,10 +53,9 @@
                       <td>{{$tag->id}}</td>
                       <td>{{$tag->tag}}</td>
                       <td>{{$tag->slug}}</td>
-                      <td>5</td>
+                      <td>{{$tag->post->count()}}</td>
                       <td class="d-flex">
                         <a href="{{route('tag.edit', $tag->id)}}" class="btn btn-sm btn-primary mr-1"><i class="fas fa-edit"></i></a>
-                        <a href="{{route('tag.show', $tag->id)}}" class="btn btn-sm btn-success mr-1"><i class="fas fa-eye"></i></a>
                         <form action="{{route('tag.destroy', $tag->id)}}" class="d-inline" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->

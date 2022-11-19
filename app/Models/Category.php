@@ -18,10 +18,7 @@ class Category extends Model
     ];
 
     //__Join with Post__//
-    // public function post(){
-    //     return $this->hasOne('App\Models\post'); //Category ID
-    // }
     public function posts(){
-        return $this->belongsToMany('App\Models\Post')->withDefault('post_id', 'category_id'); 
+        return $this->belongsToMany('App\Models\Post', 'category_posts')->withTimestamps(); 
     }
 }

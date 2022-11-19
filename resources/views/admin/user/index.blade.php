@@ -56,7 +56,7 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
-                            <td>5</td>
+                            <td>{{$user->post->count()}}</td>
                             <td>@if($user->role == 1)
                                 <span class="right badge badge-success">Admin</span> 
                                 @else
@@ -90,34 +90,37 @@
       <!-- /.content -->
 
         <!-- Editor content -->
-        @elseif((Auth()->user())->role < 1)
+        @else
         <div class="content">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12 col-lg-12 pb-4">
               <div class="card mb-4">
-                    <h3 class="text-center mt-5">My Profile</h3>
+                <h3 class="text-center mt-5">My Profile</h3>
                   <!-- Start Single Profile -->
                   <div class="row">
                     <div class="col-md-5 mx-auto my-4">
                       <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                           <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="@if(Auth()->user()->image){{asset($Auth()->user()->image)}} @else{{asset('public/media/user.png')}}@endif" alt="Image" class="img-fluid" width="200px" alt="User profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="{{asset(Auth::user()->profile)}}" alt="Image" class="img-fluid" width="200px" alt="User profile picture">
                           </div>
                           <h3 class="profile-username text-center">{{Auth()->user()->name}}</h3>
+                          @if(Auth()->user()->role > 0)
+                          <p class="text-muted text-center"><span class="right badge badge-success">Admin</span></p>
+                          @else
                           <p class="text-muted text-center"><span class="right badge badge-info">Editor</span></p>
+                          @endif
                           <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                              <b>Email</b> <a class="float-right">{{Auth()->user()->email}}</a>
+                              <b>Email</b> <span class="float-right">{{Auth()->user()->email}}</span>
                             </li>
                             <li class="list-group-item">
-                              <b>Phone</b> <a class="float-right">{{Auth()->user()->phone}}</a>
+                              <b>Phone</b> <span class="float-right">{{Auth()->user()->phone}}</span>
                             </li>
                             <li class="list-group-item">
-                              <b>Total Post</b> <a class="float-right">2</a>
+                              <b>Total Post</b> <span class="float-right">{{Auth()->user()->count()}}</span>
                             </li>
-                            <p class="pt-3">{{Auth()->user()->phone}}</p>
                           </ul>
                           <a href="{{route('user.edit', Auth()->user()->id)}}" class="btn btn-primary btn-block"><b><i class="fas fa-edit"></i> Account Edit</b></a>
                           <form action="{{route('user.destroy', Auth()->user()->id)}}" class="d-inline" method="POST">

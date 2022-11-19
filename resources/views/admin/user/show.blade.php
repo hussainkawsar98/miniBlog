@@ -32,21 +32,24 @@
                       <div class="card card-primary card-outline">
                         <div class="card-body box-profile">
                           <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle" src="@if($user->profile){{asset($user->profile)}} @else{{asset('public/media/user.png')}}@endif" width="200px" alt="Profile picture">
+                            <img class="profile-user-img img-fluid img-circle" src="{{asset($user->profile)}}" width="200px" alt="Profile picture">
                           </div>
                           <h3 class="profile-username text-center">{{$user->name}}</h3>
+                          @if($user->role > 0)
+                          <p class="text-muted text-center"><span class="right badge badge-success">Admin</span></p>
+                          @else
                           <p class="text-muted text-center"><span class="right badge badge-info">Editor</span></p>
+                          @endif
                           <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                              <b>Email</b> <a class="float-right">{{$user->email}}</a>
+                              <b>Email</b> <span class="float-right">{{$user->email}}</span>
                             </li>
                             <li class="list-group-item">
-                              <b>Phone</b> <a class="float-right">{{$user->phone}}</a>
+                              <b>Phone</b> <span class="float-right">{{$user->phone}}</span>
                             </li>
                             <li class="list-group-item">
-                              <b>Total Post</b> <a class="float-right">2</a>
+                              <b>Total Post</b> <span class="float-right">{{$user->post->count()}}</span>
                             </li>
-                            <p class="pt-3">{{$user->phone}}</p>
                           </ul>
                           <a href="{{route('user.edit', $user->id)}}" class="btn btn-primary btn-block"><b><i class="fas fa-edit"></i> Account Edit</b></a>
                           <form action="{{route('user.destroy', $user->id)}}" class="d-inline" method="POST">
