@@ -1,4 +1,5 @@
 @extends('layouts.website')
+@section('title', 'Contact Us | Develop by Muktar Hussain')
 
 @section('content')
 <div class="container-fluid bg-light">

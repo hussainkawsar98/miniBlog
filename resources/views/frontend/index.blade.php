@@ -1,4 +1,5 @@
 ﻿@extends('layouts.website')
+@section('title', 'Blog Website | Develop by Muktar Hussain')
 
 @section('content')
 <div class="site-section bg-light">
@@ -70,7 +71,8 @@
                         <div class="post-meta align-items-center text-left clearfix mb-2">
                             <figure class="author-figure mb-0 mr-3 float-left"><img
                                     src="@if($recentPost->user->image){{asset($recentPost->user->image)}} @else{{asset('public/media/user.png')}}@endif"
-                                    alt="Image" class="img-fluid"></figure>
+                                    alt="Image" class="img-fluid">
+                            </figure>
                             <span class="d-inline-block mt-1">By <a
                                     href="{{url('author', $recentPost->user_id)}}">{{$recentPost->user->name}}</a></span>
                             <span>&nbsp;-&nbsp; {{date('d M, y', strtotime($recentPost->created_at))}}

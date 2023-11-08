@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Create User | Develop by Muktar Hussain')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mini Blog</title>
+    <title>@yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -68,8 +68,9 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-body">
-                                    <form class="form-inline my-2 my-lg-0">
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <form class="form-inline my-2 my-lg-0" method="get" action="{{route('search')}}">
+                                        <h5>Search Anything</h5>
+                                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search">
                                         <button class="btn my-2 my-sm-0" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>

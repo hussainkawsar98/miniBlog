@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Blog Website Dashboard | Develop by Muktar Hussain')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -8,12 +8,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Starter Page</h1>
+                        <h1 class="m-0">Dashboard</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Starter Page</li>
+                        <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -25,64 +25,89 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+      <div class="row">
+      <div class="col-lg-3 col-6">
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
+      <div class="small-box bg-info">
+      <div class="inner">
+      <h3>{{$post->count()}}</h3>
+      <p>Total Post</p>
+      </div>
+      <div class="icon">
+      <i class="nav-icon fas fa-tachometer-alt"></i>
+      </div>
+      <a href="{{route('post.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      </div>
 
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
+      <div class="col-lg-3 col-6">
 
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+      <div class="small-box bg-success">
+      <div class="inner">
+      <h3>{{$category->count()}}</h3>
+      <p>Total Category</p>
+      </div>
+      <div class="icon">
+      <i class="nav-icon far fa-file-alt"></i>
+      </div>
+      <a href="{{route('category.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      </div>
 
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
+      <div class="col-lg-3 col-6">
+
+      <div class="small-box bg-warning">
+      <div class="inner">
+      <h3>{{$tag->count()}}</h3>
+      <p>All Tag</p>
+      </div>
+      <div class="icon">
+      <i class="fas fa-tags nav-icon"></i>
+      </div>
+      <a href="{{route('tag.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-secondary">
+          <div class="inner">
+            <h3>{{$comment->count()}}</h3>
+            <p>All Comment</p>
           </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
+          <div class="icon">
+            <i class="far fa-comments nav-icon"></i>
           </div>
-          <!-- /.col-md-6 -->
+          <a href="{{route('comment.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <!-- /.row -->
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{$message->count()}}</h3>
+            <p>All Message</p>
+          </div>
+          <div class="icon">
+          <i class="nav-icon far fa-envelope"></i>
+          </div>
+          <a href="{{route('message.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-primary">
+          <div class="inner">
+            <h3>{{$user->count()}}</h3>
+            <p>All User</p>
+          </div>
+          <div class="icon">
+            <i class="far fa-user nav-icon"></i>
+          </div>
+          <a href="{{route('user.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+
+      </div>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

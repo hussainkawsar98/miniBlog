@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+Use Session;
 use Illuminate\Http\Request;
 use App\Models\{Post,Category,Tag,Setting,Comment};
 
@@ -71,7 +72,7 @@ class FrontendController extends Controller
     }
 
     //__Comment Store//
-    public function commentStore()
+    public function commentStore(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -79,17 +80,28 @@ class FrontendController extends Controller
         ]);
 
         $comment = Comment::create([
+            'post_id' => $request->post_id,
             'name' => $request->name,
             'email' => $request->email,
             'comment' => $request->comment,
         ]);
-        if($comment){
-            return "true";
-        }
-        dd($comment);
-        //return redirect()->route('/')->with('success', 'Comment Have Done.');
-        Session::flash('success', 'Post Updated successfully!');
-        //return redirect()->route('/');
+        Session::flash('success', 'Comment Submit Successfully!');
+        return redirect()->back();
+    }
+    
+
+    //Search Post
+    public function search(Request $request){
+        $search = $request->input('search');
+    
+        // Search in the title and body columns from the posts table
+        $posts = Post::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->paginate(1);
+    
+        // Return the search view with the resluts compacted
+        return view('frontend.search', compact('posts'));
     }
 
 }

@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'All Post | Develop by Muktar Hussain')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -39,7 +40,6 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 20px">S.L</th>
                       <th>Title</th>
                       <th>Category</th>
                       <th>Tags</th>
@@ -52,7 +52,6 @@
                     @if($posts->count())
                     @foreach($posts as $post)
                     <tr>
-                      <td>{{$post->id}}</td>
                       <td>{{$post->title}}</td>
                       <td>
                         @foreach($post->categories as $category)
@@ -84,7 +83,7 @@
                     @endforeach
                     @else
                     <tr>
-                      <td colspan="7">
+                      <td colspan="6">
                         <h5 class="text-center text-danger">No Posts Found.</h5>
                       </td>
                     </tr>

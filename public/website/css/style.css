@@ -1860,6 +1860,7 @@ h5,
     line-height: 28px;
     position: absolute;
     right: 1rem;
+    top: 54px;
     padding: 6px 15px;
 }
 .navbar .form-inline .btn .fas:focus {
@@ -1976,4 +1977,16 @@ h5,
 }
 .comment p {
     color: #333333;
+}
+
+
+/* Search Style */
+.search-single {
+    border-bottom: 1px solid #cccccc;
+}
+.search-single .searchImg {
+    width: 20%;
+}
+.search-single:last-child {
+    border-bottom: none;
 }

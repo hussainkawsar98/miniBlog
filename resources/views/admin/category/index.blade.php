@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'All Category | Develop by Muktar Hussain')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -39,7 +40,6 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 20px">S.L</th>
                       <th>Name</th>
                       <th>Slug</th>
                       <th>Count</th>
@@ -50,7 +50,6 @@
                     @if($categories->count())
                     @foreach($categories as $category)
                     <tr>
-                      <td>{{$category->id}}</td>
                       <td>{{$category->name}}</td>
                       <td>{{$category->slug}}</td>
                       <td>{{$category->posts->count()}}</td>
@@ -61,13 +60,13 @@
                         <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
                         @csrf
                         <button type="submit" class="btn btn-sm btn-danger mr-1"><i class="fas fa-trash"></i></button>
-                    </form>
+                      </form>
                       </td>
                     </tr>
                     @endforeach
                     @else
                     <tr>
-                      <td colspan="5">
+                      <td colspan="4">
                         <h5 class="text-center text-danger">No Categories Found.</h5>
                       </td>
                     </tr>
@@ -76,6 +75,9 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="ml-auto my-3 mr-4">
+                {{$categories->links()}}
+              </div>
             </div> 
           </div>
           <!-- /.col-md-6 -->

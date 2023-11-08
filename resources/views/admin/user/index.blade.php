@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'User | Develop by Muktar Hussain')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -51,6 +52,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                          @if($users->count())
                           @foreach($users as $user)
                           <tr>
                             <td>{{$user->name}}</td>
@@ -75,10 +77,20 @@
                             </td>
                           </tr>
                           @endforeach
+                          @else
+                          <tr>
+                            <td colspan="6">
+                              <h5 class="text-center text-danger">Users Not Found.</h5>
+                            </td>
+                          </tr>
+                    @endif
                       </tbody> 
                     </table>
                   </div>
                   <!-- /.card-body -->
+                  <div class="ml-auto my-3 mr-4">
+                {{$users->links()}}
+              </div>
                   <!-- End Single Profile -->
                 </div> 
               </div>

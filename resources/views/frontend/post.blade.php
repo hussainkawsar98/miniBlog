@@ -1,4 +1,5 @@
 ﻿@extends('layouts.website')
+@section('title', 'View Post Single | Develop by Muktar Hussain')
 
 @section('content')
 <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('{{asset($post->image)}}');">
@@ -66,7 +67,13 @@
               <div class="comment-form-wrap pt-3">
                 <h3 class="mb-3">Leave a comment</h3>
                 <form action="{{route('comment.store')}}" method="POST" class="p-5 bg-light">
+                <ul class="ul-error p-0">
+                  @foreach ($errors->all() as $error)
+                    <li class="text-danger list-unstyled">{{ $error }}</li>
+                  @endforeach
+                </ul>
                   @csrf
+                  <input type="number" name="post_id" class="d-none" value="{{$post->id}}">
                   <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" class="form-control" name="name" id="name">
@@ -82,6 +89,9 @@
                   <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn btn-primary">
                   </div>
+                  @if(Session::has('success'))
+                  <p class="alert bg-success text-white">{{ Session::get('success') }}</p>
+                  @endif
                 </form>
               </div>
             </div>

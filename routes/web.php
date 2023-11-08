@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{CategoryController,TagController,PostController,FrontendController};
-use App\Http\Controllers\{ContactController,UserController,SettingController,CommentController};
+use App\Http\Controllers\{ContactController,UserController,SettingController,CommentController,BackendController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,20 +30,20 @@ Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact
 Route::get('/post/{slug}', [FrontendController::class, 'post'])->name('post');
 Route::get('/tag/{slug}', [FrontendController::class, 'tag'])->name('tag');
 Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');
-Route::post('/', [FrontendController::class, 'commentStore'])->name('comment.store');
+Route::post('/comment', [FrontendController::class, 'commentStore'])->name('comment.store');
+Route::get('/search', [FrontendController::class, 'search'])->name('search');
 
 //__Admin Route__//
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin.index');
+    Route::get('/', [BackendController::class, 'index'])->name('admin.index');
     Route::resource('/category', CategoryController::class);
     Route::resource('/post', PostController::class);
     Route::resource('/tag', TagController::class);
     Route::resource('/user', UserController::class);
-    Route::resource('/comment', CommentController::class);
     Route::get('/user/profile/{slug}', [UserController::class, 'profile'])->name('user.profile');
-    
+    Route::get('/comment', [CommentController::class, 'index'])->name('comment.index');
+    Route::delete('/comment/{tag}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::get('/comment/{tag}', [CommentController::class, 'show'])->name('comment.show');
     //__Setting Route__//
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::get('/setting/{setting}/edit', [SettingController::class, 'edit'])->name('setting.edit');

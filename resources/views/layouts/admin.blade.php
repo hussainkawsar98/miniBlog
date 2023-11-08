@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -71,7 +71,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="{{route('user.show', Auth()->user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
+                        <a href="{{route('user.show', Auth()->user()->id)}}" class="d-block {{Request::routeIs('user.show', Auth()->user()->id) ? 'text-info font-weight-bold' : '' }}">{{Auth::user()->name}}</a>
                     </div>
                 </div>
 
@@ -79,8 +79,8 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item menu-open">
-                            <a href="{{route('admin.index')}}" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="{{route('admin.index')}}" class="nav-link {{Request::routeIs('admin.index') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -88,10 +88,35 @@
                             </a>
                         </li>
 
-
                         <!-- Start DropDown Menu -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{Request::routeIs('post.index') || Request::routeIs('post.create') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>
+                                    Posts
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('post.index')}}" class="nav-link {{Request::routeIs('post.index') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Posts</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('post.create')}}" class="nav-link {{Request::routeIs('post.create') ? 'active' : '' }}">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Post</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- End DropDown Menu -->
+                        
+                        <!-- Start DropDown Menu -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{Request::routeIs('category.index') || Request::routeIs('category.create') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-file-alt"></i>
                                 <p>
                                     Category
@@ -100,13 +125,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('category.index')}}" class="nav-link">
+                                    <a href="{{route('category.index')}}" class="nav-link {{ Request::routeIs('category.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Categories</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('category.create')}}" class="nav-link">
+                                    <a href="{{route('category.create')}}" class="nav-link {{ Request::routeIs('category.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Category</p>
                                     </a>
@@ -117,7 +142,7 @@
 
                         <!-- Start DropDown Menu -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link {{Request::routeIs('tag.index') || Request::routeIs('tag.create') ? 'active' : '' }}">
                                 <i class="fas fa-tags nav-icon"></i>
                                 <p>
                                     Tags
@@ -126,13 +151,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('tag.index')}}" class="nav-link">
+                                    <a href="{{route('tag.index')}}" class="nav-link {{ Request::routeIs('tag.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tags</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('tag.create')}}" class="nav-link">
+                                    <a href="{{route('tag.create')}}" class="nav-link {{ Request::routeIs('tag.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Tag</p>
                                     </a>
@@ -141,34 +166,8 @@
                         </li>
                         <!-- End DropDown Menu -->
 
-                        <!-- Start DropDown Menu -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-file-alt"></i>
-                                <p>
-                                    Posts
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('post.index')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Posts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{route('post.create')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Post</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- End DropDown Menu -->
-
-                        <li class="nav-item">
-                            <a href="{{route('message.index')}}" class="nav-link">
+                            <a href="{{route('message.index')}}" class="nav-link {{ Request::routeIs('message.index') ? 'active' : '' }}">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
                                     Message
@@ -176,7 +175,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('comment.index')}}" class="nav-link">
+                            <a href="{{route('comment.index')}}" class="nav-link {{ Request::routeIs('comment.index') ? 'active' : '' }}">
                             <i class="far fa-comments nav-icon"></i>
                                 <p>
                                     Comments
@@ -184,7 +183,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('user.index')}}" class="nav-link">
+                            <a href="{{route('user.index')}}" class="nav-link {{ Request::routeIs('user.index') ? 'active' : '' }}">
                                 <i class="far fa-user nav-icon"></i>
                                 <p>
                                     My Account
@@ -193,7 +192,7 @@
                         </li>
                         <!-- Start Single Menu -->
                         <li class="nav-item">
-                            <a href="{{route('setting.index')}}" class="nav-link">
+                            <a href="{{route('setting.index')}}" class="nav-link {{ Request::routeIs('setting.index') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Setting

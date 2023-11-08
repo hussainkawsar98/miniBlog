@@ -12,6 +12,7 @@ class Comment extends Model
     protected $guarded =  ['created_at', 'updated_at']; 
 
     protected $fillable = [
+        'post_id',
         'name',
         'email',
         'comment'

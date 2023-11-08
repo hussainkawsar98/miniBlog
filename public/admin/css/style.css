@@ -1,6 +1,19 @@
 a, h1, h2, h3, h4, h5, h6, p {
     font-family: 'Nunito Sans', sans-serif!important;
 }
+.small-box>.inner {
+    padding: 10px 18px;
+}
+.small-box h3 {
+    margin-bottom: 0px;
+}
+.small-box p {
+    margin-bottom: 0;
+}
+.small-box .icon>i {
+    font-size: 70px;
+    top: 10px!important;
+}
 .logout {
     color: #dc3545!important;
     border: 1px solid #dc3545!important;
@@ -56,4 +69,13 @@ a, h1, h2, h3, h4, h5, h6, p {
 }
 .list-group.list-group-unbordered .list-group-item:last-child {
     border: none!important;
+}
+
+.nav-item a.nav-link:hover {
+    background-color: #007bff8c!important;
+    color: #ffffff!important;
+}
+.nav-item a.nav-link.active {
+    background-color: #007bff8c!important;
+    color: #ffffff!important;
 }

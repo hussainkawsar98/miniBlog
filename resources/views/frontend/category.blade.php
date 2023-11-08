@@ -1,4 +1,5 @@
 ﻿@extends('layouts.website')
+@section('title', 'Category Page | Develop by Muktar Hussain')
 
 @section('content')
 <div class="py-5 bg-light">

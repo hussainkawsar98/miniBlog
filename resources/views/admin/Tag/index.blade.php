@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'All Tag | Develop by Muktar Hussain')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -39,7 +40,6 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 20px">S.L</th>
                       <th>Name</th>
                       <th>Slug</th>
                       <th>Count</th>
@@ -50,7 +50,6 @@
                     @if($tags->count())
                     @foreach($tags as $tag)
                     <tr>
-                      <td>{{$tag->id}}</td>
                       <td>{{$tag->tag}}</td>
                       <td>{{$tag->slug}}</td>
                       <td>{{$tag->post->count()}}</td>
@@ -67,7 +66,7 @@
                     @endforeach
                     @else
                     <tr>
-                      <td colspan="5">
+                      <td colspan="4">
                         <h5 class="text-center text-danger">No Tags Found.</h5>
                       </td>
                     </tr>
@@ -76,6 +75,9 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="ml-auto my-3 mr-4">
+                {{$tags->links()}}
+              </div>
             </div> 
           </div>
           <!-- /.col-md-6 -->
